@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+		<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-dvf/0.3.0/leaflet-dvf.js"></script>
+		<style>
+		.legend {
+		    line-height: 18px;
+		    color: #555;
+		}
+		.legend i {
+		    width: 18px;
+		    height: 18px;
+		    float: left;
+		    margin-right: 8px;
+		    opacity: 0.7;
+		}
+		.info {
+		    padding: 6px 8px;
+		    background: white;
+		    background: rgba(255,255,255,0.8);
+		    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+		    border-radius: 5px;
+		}
+		</style>
+
+
+
+	</head>
+	<body>
+		<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center"><h1> Our Amazing Web Interface</h1></div>
+		</div>
+		<div class= "row">
+			<div class="col-md-8 col-md-offset-2">			
+				<div id="mapid" style="width: 100%; height: 0; padding-bottom: 50%"></div>
+			</div> 	
+		</div>
+	</body>
+	<script src="js/mapping.js"></script>
+</html>
+
+<!-- Attribution
+http://stackoverflow.com/questions/5445491/height-equal-to-dynamic-width-css-fluid-layout -->
