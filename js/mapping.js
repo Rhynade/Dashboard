@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     map = L.map("mapid").setView([1.3521, 103.8198], 11);
 
@@ -15,7 +14,7 @@ $(document).ready(function() {
     var colorFunction = new L.HSLHueFunction(new L.Point(0, 120), new L.Point(100, 20));
 
     // Get Data
-    $.getJSON( "psf.json", function( data ) {  
+    $.getJSON( "data/psf.json", function( data ) {  
         // Attribution: http://stackoverflow.com/questions/17371039/how-to-add-markers-bulk-in-leaflet
 
         var markerArray = [];
