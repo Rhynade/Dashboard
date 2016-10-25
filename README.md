@@ -1,5 +1,7 @@
 # Sunday Folks Dashboard
 
+Site hosted [here](https://rhynade.github.io/Dashboard/index.html).
+
 ## Team Members
 
 - Ang Zhen Xuan
