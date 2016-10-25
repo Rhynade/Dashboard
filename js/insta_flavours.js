@@ -1,11 +1,24 @@
-$(document).ready(function() {
-			
-			var options = {
+var options = {
 				chart: {
-					renderTo: 'container2',
+					renderTo: 'insta_flavours',
 					type: 'line'
 				},
+
+				title: {
+					text: ''
+				},
+				
 				xAxis: {
+					labels: {
+						// enabled: false,
+						formatter: function(){
+							var date = this.value;
+							year = date.split('/')[2];
+							month = date.split('/')[1];
+							var monArr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; 
+							return monArr[month-1]+ " " + year;
+						}
+					},
 					categories: []
 				},
 				yAxis: {
@@ -16,7 +29,7 @@ $(document).ready(function() {
 				series: []
 			};
 			
-			$.get('flavours_month_tr.csv', function(data) {
+			$.get('data/instagram_flavours.csv', function(data) {
 				// Split the lines
 				var lines = data.split('\n');
 				$.each(lines, function(lineNo, line) {
@@ -55,5 +68,3 @@ $(document).ready(function() {
 				var chart = new Highcharts.Chart(options);
 			});
 			
-			
-		});
