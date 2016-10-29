@@ -24,26 +24,51 @@ $(document).ready(function() {
 
         yAxis: {
             min:0,
-            max:100,
+            max:80,
             title: {
                 text: 'Number of Posts'
             },
-            plotLines: [{
-                value: 0,
-                width: 10,
-                color: '#808080'
-            }]
         },
-        series: []
+
+        plotOptions:{
+            line: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+
+        series: [{
+            id: 'dataseries',
+            data: [],
+            color: '#0074FF',
+            name: 'Burpple'
+        }, {
+            type: 'flags',
+            data: [{
+                x: 7,
+                title: 'CNY',
+                text: 'Closed during Chinese New Year'
+            }, {
+                x: 19,
+                title: 'CNY',
+                text: 'Closed during Chinese New Year'
+            }],
+
+            onSeries: 'dataseries',
+            shape: 'squarepin',
+            width: 16,
+            showInLegend: false
+        }]
     };
 
 
     $.get('data/burpple_month.csv', function(data) {
 
         var lines = data.split('\n');
-        var series = {
-            data: []
-        };
+        // var series = {
+        //     data: []
+        // };
 
 
         $.each(lines, function(lineNo, line) {
@@ -54,11 +79,11 @@ $(document).ready(function() {
 
             if(lineNo>0){
                 options.xAxis.categories.push(items[0]);
-                series.data.push(parseFloat(items[1]));
+                options.series[0].data.push(parseFloat(items[1]));
             }
 
         });
-        options.series.push(series);
+        
 
 
 
