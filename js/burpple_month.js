@@ -57,7 +57,7 @@ $(document).ready(function() {
 
             onSeries: 'dataseries',
             shape: 'squarepin',
-            width: 16,
+            width: 40,
             showInLegend: false
         }]
     };
