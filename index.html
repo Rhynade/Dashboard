@@ -231,16 +231,16 @@
 
                 setTimeout(function(){
                   var modalWidth = $('.modal-body').width();
-                  d3.json('test.json', function(datafile) {
-                    data = MG.convert.date(datafile, 'date');
+                  d3.json('data/'+data.insta_id+'.json' , function(datafile) {
+                    data = MG.convert.date(datafile, 'date_posted', "%Y-%m-%dT%H:%M:%S.%LZ");
                     MG.data_graphic({
                         title: title,
                         data: datafile,
                         width: modalWidth,
                         height: 300,
                         target: '#downloads',
-                        x_accessor: 'date',
-                        y_accessor: 'value',
+                        x_accessor: 'date_posted',
+                        y_accessor: '0'
                     });
                   });  
                 }, 200);
