@@ -14,21 +14,36 @@
       .mg-chart-title {
         font-family: "Open Sans";
       }
-      #next {
+
+      #controls {
         position: absolute;
         top: 20px;
         right: 20px;
+      }
+
+      button {
         color: #666;
         background-color: #eee;
         text-transform: uppercase;
         font-size: 12px;
         font-weight: 700;
+        font-family: "Open Sans"!important;
         padding: 10px 20px;
         border-radius: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
         border: 1px solid rgba(0,0,0,0.3);
         border-bottom-width: 3px;
+      }
+
+      .bright {
+        background-color: #4CAF50;
+        color: #ffffff;
+        font-weight: bold;
+      }
+
+      a {
+        font-family: "Open Sans"!important;
       }
 
       #loader-wrapper {
@@ -179,10 +194,25 @@
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="js/metricsgraphics.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
   <body>
     <div id="map"></div>
-    <button id="next">Next</button>
+    <div id="controls">
+
+      <button id="haji" lat="1.3007782" lon="103.8568674">Haji Lane</button>
+      <button id="lave" lat="1.3121767" lon="103.8595563">Lavender Street</button>
+      <button id="tanj" lat="1.2779488" lon="103.8428541">Tanjong Pagar</button>
+      <button class="bright" id="next">Next</button>
+    </div>
+
+    </div>
     <div class="modal fade" id="insta">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -232,8 +262,13 @@
                 setTimeout(function(){
                   var modalWidth = $('.modal-body').width();
                   d3.json('data/'+data.insta_id+'.json' , function(datafile) {
-                    delete data[0];
-                    data = MG.convert.date(datafile, 'date_posted', "%Y-%m-%dT%H:%M:%S.%LZ");
+                    var data = MG.convert.date(datafile, 'date_posted', "%Y-%m-%dT%H:%M:%S.%LZ");
+                    if (datafile.length > 9) {
+                      datafile.shift();
+                    }
+                    data = data.map(function(record){
+                      record.date_posted.setDate(1);
+                    });
                     MG.data_graphic({
                         title: title,
                         data: datafile,
@@ -274,6 +309,16 @@
           layers[1].setInteraction(true);
           var layer = layers[1];
           next(layer, map);
+
+          $('#haji').click(function() {
+            map.setView([1.3007782, 103.8568674], 17);
+          });
+          $('#lave').click(function() {
+            map.setView([1.3121767, 103.8595563], 17);
+          });
+          $('#tanj').click(function() {
+            map.setView([1.2779488, 103.8428541], 17);
+          });
         })
         .error(function(err) {
           console.log(err);
@@ -281,8 +326,5 @@
       }
       window.onload = main;
     </script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>
