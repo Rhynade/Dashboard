@@ -263,12 +263,12 @@
                   var modalWidth = $('.modal-body').width();
                   d3.json('data/'+data.insta_id+'.json' , function(datafile) {
                     var data = MG.convert.date(datafile, 'date_posted', "%Y-%m-%dT%H:%M:%S.%LZ");
-                    if (datafile.length > 9) {
-                      datafile.shift();
-                    }
-                    data = data.map(function(record){
+                    data = data.forEach(function(record){
                       record.date_posted.setDate(1);
-                    });
+                      if (record.date_posted.getFullYear() != 2016) {
+                        datafile.shift();
+                      }
+                    }); 
                     MG.data_graphic({
                         title: title,
                         data: datafile,
