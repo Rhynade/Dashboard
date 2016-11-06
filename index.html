@@ -232,6 +232,7 @@
                 setTimeout(function(){
                   var modalWidth = $('.modal-body').width();
                   d3.json('data/'+data.insta_id+'.json' , function(datafile) {
+                    delete data[0];
                     data = MG.convert.date(datafile, 'date_posted', "%Y-%m-%dT%H:%M:%S.%LZ");
                     MG.data_graphic({
                         title: title,
